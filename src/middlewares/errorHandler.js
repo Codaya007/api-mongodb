@@ -31,9 +31,9 @@ module.exports = (error, req, res, next) => {
 
   const status = error.status || 500;
   const message = error.message || "Server Error";
-  res.status(status).send({ success: false, message });
   console.error(
     "\x1b[31m%s\x1b[0m",
     "========================================================="
-  );
+    );
+    res.status(status).send({ success: false, message });
 };

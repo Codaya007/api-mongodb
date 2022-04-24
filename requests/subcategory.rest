@@ -1,0 +1,13 @@
+@API_URL=http://localhost:5000/api
+
+###
+POST {{API_URL}}/subcategory HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Camisetas manga corta",
+  "category": "6265d29bdb2270cb70621141"
+}
+
+###
+GET {{API_URL}}/subcategory HTTP/1.1

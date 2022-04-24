@@ -5,11 +5,15 @@ POST {{API_URL}}/product HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Camiseta clara",
+  "name": "Camiseta maga corta roja",
   "description": "Una camiseta muy bonita",
   "price": 12,
-  "quantity": 100
+  "quantity": 100,
+  "subcategory": "6265d34ffe3983fc3ec6ad0b"
 }
 
 ###
 GET {{API_URL}}/product HTTP/1.1
+
+###
+GET {{API_URL}}/product?subcategory=6265d34ffe3983fc3ec6ad0b HTTP/1.1

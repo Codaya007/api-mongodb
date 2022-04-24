@@ -1,21 +1,31 @@
 const Product = require("../models/Product");
+const Subcategory = require("../models/Subcategory");
+const { ObjectId } = require("mongoose").Types;
 
 const createProduct = async (req, res, next) => {
-  const { name, description, price, quantity } = req.body;
+  const { name, description, price, quantity, subcategory } = req.body;
 
-  if (!name || !description || !price || !quantity) {
+  if (!name || !description || !price || !quantity || !subcategory) {
     return next({
       status: 400,
-      message: "name, description, price and quantity fields are required",
+      message:
+        "Name, description, price, subcategory and quantity fields are required",
     });
   }
 
   try {
+    const subcategoryObj = await Subcategory.findOne({ _id: subcategory });
+
+    if (!subcategoryObj)
+      return next({ status: 404, message: "Subcategory not found" });
+
     const product = new Product({
       name,
       description,
       price,
       quantity,
+      subcategory,
+      category: subcategoryObj.category,
     });
 
     // Guardamos el nuevo producto en la DDBB
@@ -33,7 +43,21 @@ const createProduct = async (req, res, next) => {
 
 const getAllProducts = async (req, res, next) => {
   try {
-    const results = await Product.find({});
+    const { category, subcategory } = req.query;
+    if (
+      (category && !ObjectId.isValid(category)) ||
+      (subcategory && !ObjectId.isValid(subcategory))
+    )
+      return next({
+        status: 400,
+        message: "Category/subcategory query contains a invalid ObjectId",
+      });
+
+    const where = {};
+    if (category) where.category = category;
+    if (subcategory) where.subcategory = subcategory;
+
+    const results = await Product.find(where);
 
     res.json({ success: true, count: results.length, results });
   } catch (error) {

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
 // Creamos el esquema que tendrá cada documento de la collección Producto
 const ProductSchema = new mongoose.Schema(
@@ -27,6 +28,16 @@ const ProductSchema = new mongoose.Schema(
     sold: {
       type: Number,
       default: 0,
+    },
+    subcategory: {
+      type: ObjectId,
+      ref: "Subcategory",
+      required: true,
+    },
+    category: {
+      type: ObjectId,
+      ref: "Category",
+      required: true,
     },
   },
   {
