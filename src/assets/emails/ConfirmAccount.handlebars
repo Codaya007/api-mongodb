@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email de confirmación</title>
+    <style>
+      body {
+        /* background-color: pink; */
+        background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-gradient-color-double-eleven-percent-off-clothing-store-creative-promotion-poster-image_177492.jpg);
+      }
+
+      h1 {
+        color: darkmagenta;
+      }
+
+      div {
+        padding: 0.5rem;
+        text-align: justify;
+      }
+
+      .container {
+        width: 85%;
+        max-width: 550px;
+        margin: auto;
+        padding: 1rem;
+        margin: 1rem auto;
+        background-color: ghostwhite;
+        border-radius: 20px;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      .button {
+        background-color: deeppink;
+        border-radius: 10px;
+        border: none;
+        padding: 0.75rem;
+        font-size: 1rem;
+        margin: 1rem auto;
+        display: block;
+        width: 200px;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+      }
+
+      .secondary-button {
+        background-color: gray;
+        padding: 0.4rem;
+        width: 150px;
+        font-size: 13px;
+      }
+
+      .logo {
+        width: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+
+    <img
+      class="logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Shein-logo.png/1280px-Shein-logo.png"
+      alt="Logo"
+    />
+    <h1>Confirma tu dirección de correo para empezar a utilizar {{appName}}</h1>
+    <div>
+      <p>
+        Una vez que hayas confirmado que {{userEmail}} es tu dirección de correo
+        electrónico, podrás acceder al catálogo de todos nuestros productos.
+      </p>
+      <p><strong>Toca el siguiente botón para confirmar</strong></p>
+    </div>
+    <a class="button" href="{{urlConfirmAccount}}">Confirmar dirección de correo</a>
+    <div>
+      <hr />
+      <p>
+        Si no has solicitado este correo, puedes cancelar el proceso de registro presionado
+        el siguiente botón
+      </p>
+    </div>
+    <a href="{{urlCancelAccount}}" class="button secondary-button">Anular registro</a>
+    <hr />
+    <footer>
+      <h3>Enviado por {{appName}} Technologies</h3>
+      <p>{{companyAddress}}</p>
+      <img
+        class="logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Shein-logo.png/1280px-Shein-logo.png"
+        alt="Logo"
+      />
+    </footer>
+    </div>
+  </body>
+</html>

@@ -19,9 +19,17 @@ module.exports = (error, req, res, next) => {
     "\x1b[31m%s\x1b[0m",
     "====================== ERROR LOGGER ====================="
   );
-  console.table(error);
+  console.log(error.message);
 
-  if (error.errors) return res.status(400).json(error.errors);
+  if (error.errors)
+    return res
+      .status(400)
+      .json({
+        success: false,
+        message: error.message,
+        errors: error.errors,
+      });
+
   if (error.name === "MongoServerError") {
     console.error("\x1b[31m%s\x1b[0m", "Error name:", error.name);
     console.error("\x1b[31m%s\x1b[0m", "Error code:", error.code);
@@ -34,6 +42,6 @@ module.exports = (error, req, res, next) => {
   console.error(
     "\x1b[31m%s\x1b[0m",
     "========================================================="
-    );
-    res.status(status).send({ success: false, message });
+  );
+  res.status(status).send({ success: false, message });
 };

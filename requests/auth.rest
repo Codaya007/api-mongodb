@@ -1,0 +1,17 @@
+@API_URL=http://localhost:5000/api/auth
+
+###
+POST {{API_URL}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Viviana",
+  "lastname": "Calva",
+  "username": "Codaya01",
+  "password": "Mayonesa123",
+  "country": "Ecuador",
+  "city": "Loja",
+  "email": "viviana.calva@unl.edu.ec"
+}
+
+###
