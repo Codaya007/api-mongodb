@@ -3,7 +3,7 @@ const Subcategory = require("../models/Subcategory");
 const { ObjectId } = require("mongoose").Types;
 
 const createProduct = async (req, res, next) => {
-  const { name, description, price, quantity, subcategory } = req.body;
+  const { name, description, price, quantity, subcategory, gender = "U" } = req.body;
 
   if (!name || !description || !price || !quantity || !subcategory) {
     return next({
@@ -26,6 +26,7 @@ const createProduct = async (req, res, next) => {
       quantity,
       subcategory,
       category: subcategoryObj.category,
+      gender
     });
 
     // Guardamos el nuevo producto en la DDBB
@@ -43,7 +44,7 @@ const createProduct = async (req, res, next) => {
 
 const getAllProducts = async (req, res, next) => {
   try {
-    const { category, subcategory } = req.query;
+    const { category, subcategory, gender } = req.query;
     if (
       (category && !ObjectId.isValid(category)) ||
       (subcategory && !ObjectId.isValid(subcategory))
@@ -56,6 +57,7 @@ const getAllProducts = async (req, res, next) => {
     const where = {};
     if (category) where.category = category;
     if (subcategory) where.subcategory = subcategory;
+    if (gender) where.gender = gender;
 
     const results = await Product.find(where);
 

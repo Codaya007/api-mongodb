@@ -39,6 +39,12 @@ const ProductSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
+    gender: {
+      type: String,
+      enum: ["M", "F", "U"],
+      required: true,
+      default: "U",
+    }
   },
   {
     timestamps: true,
